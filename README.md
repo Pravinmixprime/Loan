@@ -100,3 +100,14 @@ This is a working base, not a production lending system. Before taking real cust
 - Bank account capture and verification, plus a payment gateway for disbursal and repayment
 - Proper admin user accounts instead of a shared token, plus HTTPS and rate limiting
 - Review of interest, fees and disclosures against RBI digital lending guidelines
+
+## Deploy to Render (free)
+
+The repo includes a [`render.yaml`](render.yaml) blueprint.
+
+1. Sign in at https://render.com with GitHub.
+2. **New → Blueprint**, pick this repository and branch, then **Apply**.
+3. When the deploy finishes, open the `https://quickcash-loan-….onrender.com` URL.
+4. Your admin token is under the service's **Environment** tab (`ADMIN_TOKEN`).
+
+On the free plan the service sleeps after about 15 minutes idle (the first visit then takes around a minute), and the SQLite file is wiped on every restart or redeploy. For real data, attach a Render persistent disk and set `DB_FILE` to a path on it.

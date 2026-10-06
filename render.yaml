@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: quickcash-loan
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/policy
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: ADMIN_TOKEN
+        generateValue: true
