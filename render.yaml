@@ -11,3 +11,23 @@ services:
         value: "22"
       - key: ADMIN_TOKEN
         generateValue: true
+      # Fill these in on the Render dashboard (Environment tab).
+      - key: LENDER_UPI_ID
+        sync: false
+      - key: LENDER_NAME
+        sync: false
+      - key: SUPPORT_PHONE
+        sync: false
+      - key: SUPPORT_EMAIL
+        sync: false
+      - key: MSG91_AUTH_KEY
+        sync: false
+      - key: MSG91_TEMPLATE_ID
+        sync: false
+    # For real customers switch to a paid plan and uncomment so data and
+    # KYC uploads survive restarts:
+    # disk:
+    #   name: data
+    #   mountPath: /var/data
+    #   sizeGB: 1
+    # and set DB_FILE=/var/data/loans.db and UPLOAD_DIR=/var/data/uploads

@@ -7,6 +7,8 @@
   <meta name="description" content="Short-term loans from ₹5,000 to ₹10,000 based on your salary and monthly income. Check eligibility in seconds.">
   <title>QuickCash – Short-Term Loans ₹5,000 to ₹10,000</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%231f6feb'/><text x='16' y='23' font-size='20' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>₹</text></svg>">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,8 +17,8 @@
       <a class="brand" href="/"><span class="brand-mark">₹</span>QuickCash</a>
       <nav>
         <a class="link" href="#check">Eligibility</a>
-        <a class="link" href="#status">Track status</a>
-        <a class="nav-cta" href="#check">Apply now</a>
+        <a class="link" href="/app">Log in</a>
+        <a class="nav-cta" href="/app">Apply now</a>
       </nav>
     </div>
   </header>
@@ -26,7 +28,7 @@
       <span class="eyebrow">Instant eligibility check</span>
       <h1>Short-term loans from ₹5,000 to ₹10,000</h1>
       <p>Your loan amount is based on your monthly salary and income. Check how much you can get in under a minute.</p>
-      <a class="hero-cta" href="#check">Check my eligibility</a>
+      <a class="hero-cta" href="/app">Apply now</a>
       <div class="highlights" id="highlights"></div>
     </section>
 
@@ -96,79 +98,21 @@
       <div id="eligibility-result"></div>
     </section>
 
-    <!-- Application -->
-    <section class="card hidden" id="apply">
-      <h2><span class="step">2</span>Apply for your loan</h2>
-      <p class="sub">Pick your amount and fill in your details.</p>
-      <form id="application-form" novalidate>
-        <div class="amount-picker">
-          <div class="muted small-text" style="text-align:center">Loan amount</div>
-          <div class="value" id="requestedAmountLabel"></div>
-          <input id="requestedAmount" name="requestedAmount" type="range" step="500" aria-label="Loan amount">
-          <div class="range-labels"><span id="rangeMin"></span><span id="rangeMax"></span></div>
-        </div>
-        <div class="field-error" data-for="requestedAmount"></div>
-        <div id="live-quote"></div>
-
-        <h3>Your details</h3>
-        <div class="grid">
-          <div>
-            <label for="fullName">Full name <span class="hint">(as on PAN)</span></label>
-            <input id="fullName" name="fullName" autocomplete="name" required>
-            <div class="field-error" data-for="fullName"></div>
-          </div>
-          <div>
-            <label for="mobile">Mobile number</label>
-            <input id="mobile" name="mobile" type="tel" inputmode="numeric" maxlength="10" autocomplete="tel-national" required placeholder="10-digit number">
-            <div class="field-error" data-for="mobile"></div>
-          </div>
-          <div>
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" autocapitalize="off" required>
-            <div class="field-error" data-for="email"></div>
-          </div>
-          <div>
-            <label for="pan">PAN</label>
-            <input id="pan" name="pan" maxlength="10" autocapitalize="characters" autocomplete="off" spellcheck="false" required placeholder="ABCDE1234F" style="text-transform:uppercase">
-            <div class="field-error" data-for="pan"></div>
-          </div>
-          <div class="full">
-            <label for="employerName">Employer / business name</label>
-            <input id="employerName" name="employerName" autocomplete="organization" required>
-            <div class="field-error" data-for="employerName"></div>
-          </div>
-        </div>
-        <label class="checkbox">
-          <input type="checkbox" id="consent" name="consent">
-          <span>I confirm the information is correct and agree to the loan terms and a credit check.</span>
-        </label>
-        <div class="field-error" data-for="consent"></div>
-        <div class="actions">
-          <button type="submit">Submit application</button>
-          <button type="button" class="secondary" id="edit-eligibility">Change income details</button>
-        </div>
-      </form>
-      <div id="application-result"></div>
+    <section class="card" id="how">
+      <h2>How it works</h2>
+      <ol class="how-list">
+        <li><strong>Sign up with your mobile</strong><span>Log in with a one-time password (OTP)</span></li>
+        <li><strong>Complete KYC</strong><span>PAN, Aadhaar, a selfie and your latest salary slip or bank statement</span></li>
+        <li><strong>Choose amount &amp; tenure</strong><span>₹5,000 – ₹10,000, repay in 30, 60 or 90 days</span></li>
+        <li><strong>Get money in your bank</strong><span>Repay EMIs by UPI right from the app</span></li>
+      </ol>
+      <div class="actions"><a class="btn" href="/app">Open the QuickCash app</a></div>
     </section>
 
-    <!-- Status lookup -->
-    <section class="card" id="status">
-      <h2>Track your application</h2>
-      <p class="sub">Use the reference number you got after applying.</p>
-      <form id="status-form" novalidate>
-        <div class="grid">
-          <div>
-            <label for="statusId">Application reference</label>
-            <input id="statusId" name="id" autocapitalize="characters" autocomplete="off" spellcheck="false" required placeholder="QL…">
-          </div>
-          <div>
-            <label for="statusMobile">Registered mobile</label>
-            <input id="statusMobile" name="mobile" type="tel" inputmode="numeric" maxlength="10" required>
-          </div>
-        </div>
-        <div class="actions"><button type="submit">Check status</button></div>
-      </form>
-      <div id="status-result"></div>
+    <section class="card">
+      <h2>Already applied?</h2>
+      <p class="sub">Log in to the app with your mobile number to see your loan status, EMIs and payments.</p>
+      <div class="actions"><a class="btn secondary" href="/app">Log in to track my loan</a></div>
     </section>
   </main>
 
@@ -177,6 +121,6 @@
   </footer>
 
   <script src="common.js"></script>
-  <script src="app.js"></script>
+  <script src="landing.js"></script>
 </body>
 </html>

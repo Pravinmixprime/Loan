@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1f6feb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="QuickCash">
+  <title>QuickCash – Instant Loans</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="app-body">
+  <div class="app-shell">
+    <header class="app-top" id="top">
+      <button class="icon-btn hidden" id="back" aria-label="Back">‹</button>
+      <div class="app-title" id="title"><span class="brand-mark">₹</span>QuickCash</div>
+      <span class="top-spacer"></span>
+    </header>
+    <main class="app-main" id="view" aria-live="polite"></main>
+    <nav class="tabbar hidden" id="tabbar">
+      <a href="#/home" data-tab="home"><span class="tab-ico">⌂</span>Home</a>
+      <a href="#/loans" data-tab="loans"><span class="tab-ico">≡</span>My loans</a>
+      <a href="#/profile" data-tab="profile"><span class="tab-ico">◉</span>Profile</a>
+    </nav>
+  </div>
+  <div class="toast hidden" id="toast" role="status"></div>
+
+  <script src="common.js"></script>
+  <script src="customer.js"></script>
+</body>
+</html>

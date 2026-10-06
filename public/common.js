@@ -36,10 +36,7 @@ function showFieldErrors(form, errors = {}) {
   });
 }
 
-function quoteHtml(q) {
-  const rows = q.schedule
-    .map((s) => `<tr><td>EMI ${s.installment}</td><td>${escapeHtml(fmtDate(s.dueDate))}</td><td class="num"><strong>${inr(s.amount)}</strong></td></tr>`)
-    .join('');
+function summaryHtml(q) {
   return `
     <div class="summary">
       <div><span>You receive</span><strong>${inr(q.disbursedAmount)}</strong></div>
@@ -47,7 +44,14 @@ function quoteHtml(q) {
       <div><span>Loan amount</span><strong>${inr(q.principal)}</strong></div>
       <div><span>Interest (${q.tenureDays} days)</span><strong>${inr(q.interest)}</strong></div>
       <div class="total"><span>Total to repay</span><strong>${inr(q.totalRepayable)}</strong></div>
-    </div>
+    </div>`;
+}
+
+function quoteHtml(q) {
+  const rows = q.schedule
+    .map((s) => `<tr><td>EMI ${s.installment}</td><td>${escapeHtml(fmtDate(s.dueDate))}</td><td class="num"><strong>${inr(s.amount)}</strong></td></tr>`)
+    .join('');
+  return `${summaryHtml(q)}
     <div class="table-wrap schedule">
       <table>
         <thead><tr><th>Payment</th><th>Due date</th><th class="num">Amount</th></tr></thead>
