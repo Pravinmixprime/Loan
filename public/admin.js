@@ -50,18 +50,18 @@ function rowHtml(a) {
     ? `<div class="small-text muted">${a.reasons.map(escapeHtml).join('<br>')}</div>`
     : '';
   return `<tr>
-    <td><strong>${escapeHtml(a.id)}</strong><div class="small-text muted">${new Date(a.createdAt).toLocaleString('en-IN')}</div></td>
-    <td>${escapeHtml(a.fullName)}
+    <td data-label="Reference"><strong>${escapeHtml(a.id)}</strong><div class="small-text muted">${new Date(a.createdAt).toLocaleString('en-IN')}</div></td>
+    <td data-label="Applicant">${escapeHtml(a.fullName)}
       <div class="small-text muted">${escapeHtml(a.mobile)} · ${escapeHtml(a.email)}<br>
       PAN ${escapeHtml(a.pan)} · ${escapeHtml(a.employerName)} (${a.employmentType === 'salaried' ? 'Salaried' : 'Self-employed'}, ${a.monthsInCurrentJob} mo)</div></td>
-    <td>Salary ${inr(a.monthlySalary)}
+    <td data-label="Income">Salary ${inr(a.monthlySalary)}
       <div class="small-text muted">Other ${inr(a.otherMonthlyIncome)} · EMI ${inr(a.existingEmi)}<br>Assessed ${inr(a.assessedIncome)}</div></td>
-    <td>${inr(a.approvedAmount || a.requestedAmount)}
+    <td data-label="Loan">${inr(a.approvedAmount || a.requestedAmount)}
       <div class="small-text muted">Requested ${inr(a.requestedAmount)} · ${a.tenureDays} days
       ${a.quote ? `<br>Repay ${inr(a.quote.totalRepayable)}` : ''}</div></td>
-    <td><span class="badge ${a.status}">${a.status}</span>${reasons}
+    <td data-label="Status"><span class="badge ${a.status}">${a.status}</span>${reasons}
       ${a.adminNote ? `<div class="small-text">Note: ${escapeHtml(a.adminNote)}</div>` : ''}</td>
-    <td>${buttons}</td>
+    <td class="actions-cell">${buttons}</td>
   </tr>`;
 }
 

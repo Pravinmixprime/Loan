@@ -5,6 +5,9 @@
 const inr = (n) =>
   '₹' + Number(n || 0).toLocaleString('en-IN', { maximumFractionDigits: 0 });
 
+const fmtDate = (iso) =>
+  new Date(iso + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+
 function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, (c) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -35,19 +38,19 @@ function showFieldErrors(form, errors = {}) {
 
 function quoteHtml(q) {
   const rows = q.schedule
-    .map((s) => `<tr><td>${s.installment}</td><td>${escapeHtml(s.dueDate)}</td><td>${inr(s.amount)}</td></tr>`)
+    .map((s) => `<tr><td>EMI ${s.installment}</td><td>${escapeHtml(fmtDate(s.dueDate))}</td><td class="num"><strong>${inr(s.amount)}</strong></td></tr>`)
     .join('');
   return `
     <div class="summary">
-      <div><span>Loan amount</span><strong>${inr(q.principal)}</strong></div>
-      <div><span>Processing fee</span><strong>${inr(q.processingFee)}</strong></div>
       <div><span>You receive</span><strong>${inr(q.disbursedAmount)}</strong></div>
+      <div><span>Processing fee</span><strong>${inr(q.processingFee)}</strong></div>
+      <div><span>Loan amount</span><strong>${inr(q.principal)}</strong></div>
       <div><span>Interest (${q.tenureDays} days)</span><strong>${inr(q.interest)}</strong></div>
-      <div><span>Total repayable</span><strong>${inr(q.totalRepayable)}</strong></div>
+      <div class="total"><span>Total to repay</span><strong>${inr(q.totalRepayable)}</strong></div>
     </div>
-    <div class="table-wrap">
+    <div class="table-wrap schedule">
       <table>
-        <thead><tr><th>#</th><th>Due date</th><th>Amount</th></tr></thead>
+        <thead><tr><th>Payment</th><th>Due date</th><th class="num">Amount</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
     </div>`;

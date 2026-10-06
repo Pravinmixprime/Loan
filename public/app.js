@@ -32,11 +32,12 @@ async function loadPolicy() {
   policy = data;
   document.getElementById('highlights').innerHTML = `
     <div class="highlight"><strong>${inr(policy.minLoan)} – ${inr(policy.maxLoan)}</strong><span>Loan amount</span></div>
-    <div class="highlight"><strong>${policy.tenureOptions.join(' / ')} days</strong><span>Tenure options</span></div>
+    <div class="highlight"><strong>${policy.tenureOptions[0]}–${policy.tenureOptions.at(-1)} days</strong><span>Repayment</span></div>
     <div class="highlight"><strong>${policy.monthlyInterestRate * 100}% / month</strong><span>Flat interest</span></div>
     <div class="highlight"><strong>${inr(policy.minMonthlyIncome)}+</strong><span>Min. monthly income</span></div>`;
-  document.getElementById('tenureDays').innerHTML = policy.tenureOptions
-    .map((d) => `<option value="${d}">${d} days · ${d / 30} EMI${d > 30 ? 's' : ''}</option>`)
+  document.getElementById('tenureOptions').innerHTML = policy.tenureOptions
+    .map((d, i) => `<label><input type="radio" name="tenureDays" value="${d}"${i === 0 ? ' checked' : ''}>
+      <span>${d} days<small>${d / 30} EMI${d > 30 ? 's' : ''}</small></span></label>`)
     .join('');
 }
 
@@ -76,6 +77,8 @@ eligibilityForm.addEventListener('submit', async (e) => {
   amountSlider.max = data.maxEligibleAmount;
   amountSlider.value = data.maxEligibleAmount;
   amountSlider.disabled = data.maxEligibleAmount === policy.minLoan;
+  document.getElementById('rangeMin').textContent = inr(policy.minLoan);
+  document.getElementById('rangeMax').textContent = inr(data.maxEligibleAmount);
   updateAmount();
   applicationResult.innerHTML = '';
   applicationForm.classList.remove('hidden');
